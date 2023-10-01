@@ -2,7 +2,7 @@ import axios from "axios";
 import 'dotenv/config'
 import filterData from "./filterData.mjs";
 import runDatabase from "./database.mjs";
-const { client, collection_1 } = await runDatabase();
+// const { client, collection_1, collection_2 } = await runDatabase();
 
 async function getUsers() {
     try {
@@ -22,4 +22,14 @@ async function getUsers() {
     }
 }
 
-getUsers();
+async function getComments() {
+    try {
+        const response = await axios.get(process.env.API_URL_COMMENTS);
+        const comments = response.data;
+        console.log(comments);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getComments();
