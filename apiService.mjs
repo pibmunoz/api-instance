@@ -1,6 +1,7 @@
 import axios from "axios";
 import 'dotenv/config'
-import filterData from "./filterData.mjs";
+import filterUsers from "./filterUsers.mjs";
+import filterComments from "./filterComments.mjs";
 import runDatabase from "./database.mjs";
 const { client, collection_1, collection_2 } = await runDatabase();
 
@@ -8,7 +9,7 @@ async function getUsers() {
     try {
         const response = await axios.get(process.env.API_URL_USERS);
         const users = response.data;
-        const filteredUsers = filterData(users);
+        const filteredUsers = filterUsers(users);
 
         // Insert filteredUsers into collection_1
         const insertResult_1 = await collection_1.insertMany(filteredUsers);
@@ -33,6 +34,8 @@ async function getComments() {
     } catch (error) {
         console.error(error);
     } finally {
+        const dataFromCollection_2 = await collection_2.find({}).toArray();
+        console.log(filterComments(dataFromCollection_2, 3));
         await client.close();
         console.log("Disconnected from server, bye bye!");
     }
