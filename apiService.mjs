@@ -2,7 +2,7 @@ import axios from "axios";
 import 'dotenv/config'
 import filterData from "./filterData.mjs";
 import runDatabase from "./database.mjs";
-// const { client, collection_1, collection_2 } = await runDatabase();
+const { client, collection_1, collection_2 } = await runDatabase();
 
 async function getUsers() {
     try {
@@ -26,9 +26,15 @@ async function getComments() {
     try {
         const response = await axios.get(process.env.API_URL_COMMENTS);
         const comments = response.data;
-        console.log(comments);
+
+        // Insert comments into collection_2
+        const insertResult_2 = await collection_2.insertMany(comments);
+        console.log(`${insertResult_2.insertedCount} documents were inserted into collection_2`);
     } catch (error) {
         console.error(error);
+    } finally {
+        await client.close();
+        console.log("Disconnected from server, bye bye!");
     }
 }
 
