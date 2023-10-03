@@ -23,6 +23,8 @@ API_URL_COMMENTS=<your-api-url-comments>
 Tests are written using [Jest](https://jestjs.io/).
 Run the tests: :sparkles: `npm run test` :sparkles:
 
+**Note:** *Tests only cover the filtering functions and the insertion of data into the database as the insertion of data also depends on the database connection and the API.*
+
 ## Planning
 The planning of this project can be found [here](https://smiling-rodent-acb.notion.site/84b696850bdb4d4ab179150ac6e8067d?v=a53036e0f24b4cb7a21cf18db7c7d929&pvs=4) 
 
