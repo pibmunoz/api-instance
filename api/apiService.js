@@ -1,9 +1,9 @@
 import axios from "axios";
 import 'dotenv/config'
-import filterUsers from "./filters/filterUsers.mjs";
-import filterComments from "./filters/filterComments.mjs";
-import insertData from "../utils/insertData.mjs";
-import runDatabase from "../database/database.mjs";
+import filterUsers from "./filters/filterUsers.js";
+import filterComments from "./filters/filterComments.js";
+import insertData from "../utils/insertData.js";
+import runDatabase from "../database/database.js";
 
 // Run database from database.mjs
 const { client, collection_1, collection_2 } = await runDatabase();
